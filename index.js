@@ -1,6 +1,11 @@
 import * as core from '@actions/core';
+import * as core from '@actions/github';
 
-const name = core.getInput('name');
-const output_value = `Hello ${name}!`;
+try {
+    const name = core.getInput('name');
+    const output_value = `Hello ${name}!`;
 
-core.setOutput('Greeting', output_value);
+    core.setOutput('Greeting', output_value);
+} catch (error) {
+    core.setFailed(error.message);
+  }
